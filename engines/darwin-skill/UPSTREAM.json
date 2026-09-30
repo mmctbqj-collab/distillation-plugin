@@ -1,0 +1,119 @@
+{
+  "engine": "darwin-skill",
+  "upstreamRepo": "https://github.com/alchaincyf/darwin-skill",
+  "upstreamSourceDir": "darwin-skill",
+  "upstreamCommit": "8a8b66258e3c45d6ae4aea39719468c6428fcb0a",
+  "vendoredAt": "2026-09-29",
+  "note": "Skill evolution / ratchet evaluation (prompt-only engine).",
+  "droppedUpstream": "assets/ (4.1 MB of screenshots), showcase.html left upstream.",
+  "adaptation": {
+    "hashMode": "lf-normalized",
+    "table": [
+      "tilde-claude-root: /~[\\\\/]\\.claude[\\\\/]skills/g -> $DSH_HOME/skills",
+      "absolute-home-claude-root: /\\/Users\\/[^/\\s`\"']+\\/\\.claude\\/skills/g -> $DSH_HOME/skills",
+      "relative-claude-root: /\\.claude[\\\\/]skills/g -> .dsh/skills",
+      "python-home-claude-root: /Path\\.home\\(\\)\\s*\\/\\s*\"\\.claude\"\\s*\\/\\s*\"skills\"/g -> Path(os.environ.get(\"DSH_HOME\") or os.path.expanduser(\"~/.dsh\")) / \"skills\"",
+      "claude-agents-dir: /\\.claude[\\\\/]agents/g -> .dsh/agents"
+    ],
+    "rewrittenFiles": [
+      {
+        "path": "SKILL.md",
+        "rewrites": [
+          "relative-claude-root×5"
+        ],
+        "sha256Source": "3d57422079687a3a"
+      },
+      {
+        "path": "README.md",
+        "rewrites": [
+          "tilde-claude-root×1"
+        ],
+        "sha256Source": "a637d388a41fc3e3"
+      },
+      {
+        "path": "docs/index.html",
+        "rewrites": [
+          "relative-claude-root×1"
+        ],
+        "sha256Source": "30976fa13ec41f05"
+      }
+    ],
+    "shippedVerbatim": [
+      "darwin-skill/references/runtime-neutrality.md"
+    ]
+  },
+  "files": [
+    {
+      "path": "SKILL.md",
+      "bytes": 31960,
+      "sha256": "ce73db2205812530",
+      "rewritten": [
+        "relative-claude-root×5"
+      ],
+      "sha256Source": "3d57422079687a3a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 12449,
+      "sha256": "4de25d09e13d9d0b",
+      "rewritten": [
+        "tilde-claude-root×1"
+      ],
+      "sha256Source": "a637d388a41fc3e3"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1097,
+      "sha256": "0d42df9f8e8f49de"
+    },
+    {
+      "path": "scripts/screenshot.mjs",
+      "bytes": 3363,
+      "sha256": "d1c4320149479097"
+    },
+    {
+      "path": "references/runtime-neutrality.md",
+      "bytes": 5250,
+      "sha256": "92977c93d4c29294"
+    },
+    {
+      "path": "references/skilllens-evidence.md",
+      "bytes": 6815,
+      "sha256": "f2ce34bf57e123bc"
+    },
+    {
+      "path": "templates/result-card-dark.html",
+      "bytes": 18559,
+      "sha256": "1113b187e2a315bf"
+    },
+    {
+      "path": "templates/result-card-white.html",
+      "bytes": 11726,
+      "sha256": "3150923c0bd8c602"
+    },
+    {
+      "path": "templates/result-card.html",
+      "bytes": 16450,
+      "sha256": "48543692d778fb01"
+    },
+    {
+      "path": "templates/result-card.png",
+      "bytes": 878511,
+      "sha256": "841d9c30602f0de5"
+    },
+    {
+      "path": "test-prompts.json",
+      "bytes": 1233,
+      "sha256": "8a9d8f20247efcdb"
+    },
+    {
+      "path": "docs/index.html",
+      "bytes": 32540,
+      "sha256": "1eac2ecabf053312",
+      "rewritten": [
+        "relative-claude-root×1"
+      ],
+      "sha256Source": "30976fa13ec41f05"
+    }
+  ]
+}

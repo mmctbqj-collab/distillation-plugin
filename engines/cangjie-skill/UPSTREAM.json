@@ -1,0 +1,450 @@
+{
+  "engine": "cangjie-skill",
+  "upstreamRepo": "https://github.com/kangarooking/cangjie-skill",
+  "upstreamSourceDir": "cangjie-skill",
+  "upstreamCommit": "874eb414e6414dd6d399222a7e3925206dfdb585",
+  "vendoredAt": "2026-09-29",
+  "note": "Book/document → capability bundle → skill pack; the only engine with a real CLI.",
+  "droppedUpstream": "books/ (third-party book digests — not ours to redistribute), dist/ (generated output), assets/, website/, benchmarks/, docs/plans (maintainer plans) left upstream.",
+  "adaptation": {
+    "hashMode": "lf-normalized",
+    "table": [
+      "tilde-claude-root: /~[\\\\/]\\.claude[\\\\/]skills/g -> $DSH_HOME/skills",
+      "absolute-home-claude-root: /\\/Users\\/[^/\\s`\"']+\\/\\.claude\\/skills/g -> $DSH_HOME/skills",
+      "relative-claude-root: /\\.claude[\\\\/]skills/g -> .dsh/skills",
+      "python-home-claude-root: /Path\\.home\\(\\)\\s*\\/\\s*\"\\.claude\"\\s*\\/\\s*\"skills\"/g -> Path(os.environ.get(\"DSH_HOME\") or os.path.expanduser(\"~/.dsh\")) / \"skills\"",
+      "claude-agents-dir: /\\.claude[\\\\/]agents/g -> .dsh/agents"
+    ],
+    "rewrittenFiles": [
+      {
+        "path": "templates/INDEX.md.template",
+        "rewrites": [
+          "tilde-claude-root×1",
+          "relative-claude-root×1"
+        ],
+        "sha256Source": "ce0a277ba4a0dfe1"
+      },
+      {
+        "path": "methodology/07-stage5-deliver.md",
+        "rewrites": [
+          "tilde-claude-root×1",
+          "relative-claude-root×1"
+        ],
+        "sha256Source": "22411940543a71ad"
+      }
+    ],
+    "shippedVerbatim": []
+  },
+  "files": [
+    {
+      "path": "SKILL.md",
+      "bytes": 13645,
+      "sha256": "cd9e3e844cf40577"
+    },
+    {
+      "path": "README.md",
+      "bytes": 22295,
+      "sha256": "126cb13711260ea6"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "bytes": 20982,
+      "sha256": "5abcd8a1d57709fc"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 5267,
+      "sha256": "f90293414c2b898f"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1077,
+      "sha256": "1126322e2cc8d165"
+    },
+    {
+      "path": "scripts/apply_skill_patch.py",
+      "bytes": 3358,
+      "sha256": "2e36b9b947df716f"
+    },
+    {
+      "path": "scripts/benchmark.py",
+      "bytes": 4121,
+      "sha256": "70b0dfa11558208e"
+    },
+    {
+      "path": "scripts/build_chunks.py",
+      "bytes": 7772,
+      "sha256": "67b45f170dc9da6a"
+    },
+    {
+      "path": "scripts/build_index.py",
+      "bytes": 3778,
+      "sha256": "de0f860d9bde8b65"
+    },
+    {
+      "path": "scripts/cangjie.py",
+      "bytes": 13587,
+      "sha256": "1ed5da2c82acfd57"
+    },
+    {
+      "path": "scripts/cangjie_common.py",
+      "bytes": 7498,
+      "sha256": "f320eaa1e72361cc"
+    },
+    {
+      "path": "scripts/compile_pack.py",
+      "bytes": 6326,
+      "sha256": "0531458bc1baae00"
+    },
+    {
+      "path": "scripts/compile_single.py",
+      "bytes": 10266,
+      "sha256": "1f5d8279f6582dad"
+    },
+    {
+      "path": "scripts/count_tokens.py",
+      "bytes": 7064,
+      "sha256": "f15744ea6332e866"
+    },
+    {
+      "path": "scripts/diff_sources.py",
+      "bytes": 4908,
+      "sha256": "c2dc99661626d2cc"
+    },
+    {
+      "path": "scripts/generate_star_history.py",
+      "bytes": 9552,
+      "sha256": "6d9e201fd7e801eb"
+    },
+    {
+      "path": "scripts/impact_analysis.py",
+      "bytes": 9298,
+      "sha256": "6a35dd99c3c304aa"
+    },
+    {
+      "path": "scripts/repair_flow.py",
+      "bytes": 4568,
+      "sha256": "ca59d0b052ff2367"
+    },
+    {
+      "path": "scripts/run_output_evals.py",
+      "bytes": 13271,
+      "sha256": "99631ce29a1994b2"
+    },
+    {
+      "path": "scripts/run_trigger_evals.py",
+      "bytes": 6955,
+      "sha256": "06dadfc102fbe94e"
+    },
+    {
+      "path": "scripts/select_output_strategy.py",
+      "bytes": 4666,
+      "sha256": "422702d52fa935d7"
+    },
+    {
+      "path": "scripts/update_flow.py",
+      "bytes": 6099,
+      "sha256": "ad838e38d26d2e31"
+    },
+    {
+      "path": "scripts/validate_skill_pack.py",
+      "bytes": 4063,
+      "sha256": "7e93c1b0866dcc00"
+    },
+    {
+      "path": "schemas/capability-bundle.schema.json",
+      "bytes": 2286,
+      "sha256": "defb7807916bb9b7"
+    },
+    {
+      "path": "schemas/capability.schema.json",
+      "bytes": 3920,
+      "sha256": "16f56d937c9f7917"
+    },
+    {
+      "path": "schemas/change-set.schema.json",
+      "bytes": 1602,
+      "sha256": "be1bb385fe36c42f"
+    },
+    {
+      "path": "schemas/contracts/chunk.schema.json",
+      "bytes": 1054,
+      "sha256": "c06ba57632aeb933"
+    },
+    {
+      "path": "schemas/contracts/source-document.schema.json",
+      "bytes": 2091,
+      "sha256": "75f01d240c012839"
+    },
+    {
+      "path": "schemas/dependency-graph.schema.json",
+      "bytes": 1482,
+      "sha256": "86295872221b5bd8"
+    },
+    {
+      "path": "schemas/eval-suite.schema.json",
+      "bytes": 3035,
+      "sha256": "4ca697b9a0a46f4a"
+    },
+    {
+      "path": "schemas/failure-case.schema.json",
+      "bytes": 1609,
+      "sha256": "a9584160758e689a"
+    },
+    {
+      "path": "schemas/output-decision.schema.json",
+      "bytes": 1177,
+      "sha256": "78a399819b0b80ef"
+    },
+    {
+      "path": "schemas/registry-entry-v1.schema.json",
+      "bytes": 2124,
+      "sha256": "0d7c34f7a9bc9695"
+    },
+    {
+      "path": "schemas/registry-entry-v2.schema.json",
+      "bytes": 2979,
+      "sha256": "3f09403cbf3d9e65"
+    },
+    {
+      "path": "schemas/registry-entry.schema.json",
+      "bytes": 546,
+      "sha256": "a4521d0ae7932ea8"
+    },
+    {
+      "path": "schemas/source-manifest.schema.json",
+      "bytes": 2140,
+      "sha256": "2a7fff8c73021dc2"
+    },
+    {
+      "path": "templates/BOOK_OVERVIEW.md.template",
+      "bytes": 2922,
+      "sha256": "1ceaa8815674a535"
+    },
+    {
+      "path": "templates/DIGEST.md.template",
+      "bytes": 2157,
+      "sha256": "34ec8d597cc7b520"
+    },
+    {
+      "path": "templates/INDEX.md.template",
+      "bytes": 2022,
+      "sha256": "d0eb56ba8d770965",
+      "rewritten": [
+        "tilde-claude-root×1",
+        "relative-claude-root×1"
+      ],
+      "sha256Source": "ce0a277ba4a0dfe1"
+    },
+    {
+      "path": "templates/SKILL.md.template",
+      "bytes": 3527,
+      "sha256": "226c65a559187dda"
+    },
+    {
+      "path": "templates/test-prompts.json.template",
+      "bytes": 2013,
+      "sha256": "3acd11a781f2e2c6"
+    },
+    {
+      "path": "methodology/00-overview.md",
+      "bytes": 5317,
+      "sha256": "849a40ca94fa214d"
+    },
+    {
+      "path": "methodology/01-stage0-adler.md",
+      "bytes": 3580,
+      "sha256": "90d3f7cdae19808c"
+    },
+    {
+      "path": "methodology/02-stage1-parallel-extract.md",
+      "bytes": 5610,
+      "sha256": "9a6cefeae96b14b7"
+    },
+    {
+      "path": "methodology/03-stage1.5-triple-verify.md",
+      "bytes": 7048,
+      "sha256": "3b721654a18f4da3"
+    },
+    {
+      "path": "methodology/03b-stage1.6-promotion-gate.md",
+      "bytes": 3476,
+      "sha256": "82059cb2b298f340"
+    },
+    {
+      "path": "methodology/04-stage2-ria-plus.md",
+      "bytes": 7422,
+      "sha256": "6f43835518e0e138"
+    },
+    {
+      "path": "methodology/05-stage3-zettelkasten.md",
+      "bytes": 2103,
+      "sha256": "0edf07e2940a0cfa"
+    },
+    {
+      "path": "methodology/06-stage4-pressure-test.md",
+      "bytes": 8043,
+      "sha256": "ace40a831b5f02b3"
+    },
+    {
+      "path": "methodology/07-stage5-deliver.md",
+      "bytes": 5225,
+      "sha256": "deffd2af6cbe7d81",
+      "rewritten": [
+        "tilde-claude-root×1",
+        "relative-claude-root×1"
+      ],
+      "sha256Source": "22411940543a71ad"
+    },
+    {
+      "path": "registry/1000-true-fans-skill/entry.yaml",
+      "bytes": 463,
+      "sha256": "d174023b820a09a9"
+    },
+    {
+      "path": "registry/ai-for-everyone-skill/entry.yaml",
+      "bytes": 456,
+      "sha256": "79d7f6a80ae83f22"
+    },
+    {
+      "path": "registry/buffett-letters-skill/entry.yaml",
+      "bytes": 487,
+      "sha256": "3a9049c1da63fb4e"
+    },
+    {
+      "path": "registry/cognitive-dividend-skill/entry.yaml",
+      "bytes": 468,
+      "sha256": "4a4d6d5b32f31482"
+    },
+    {
+      "path": "registry/contagious-skill/entry.yaml",
+      "bytes": 437,
+      "sha256": "26f9e9351e074099"
+    },
+    {
+      "path": "registry/copywriters-handbook-skill/entry.yaml",
+      "bytes": 467,
+      "sha256": "dab498f55b0f2260"
+    },
+    {
+      "path": "registry/duan-yongping-skill/entry.yaml",
+      "bytes": 470,
+      "sha256": "bc3974aae152954c"
+    },
+    {
+      "path": "registry/first-principles-skill/entry.yaml",
+      "bytes": 456,
+      "sha256": "1549d6082f683ea9"
+    },
+    {
+      "path": "registry/high-math-vol1-ch1-skill/entry.yaml",
+      "bytes": 468,
+      "sha256": "9b9e53f7ddd48eba"
+    },
+    {
+      "path": "registry/huangdi-neijing-skill/entry.yaml",
+      "bytes": 472,
+      "sha256": "db1dc374ea5255ad"
+    },
+    {
+      "path": "registry/influence-skill/entry.yaml",
+      "bytes": 430,
+      "sha256": "58a1ac0124e63b48"
+    },
+    {
+      "path": "registry/loop-engineering-skill/entry.yaml",
+      "bytes": 469,
+      "sha256": "465e3cc5a699e9a2"
+    },
+    {
+      "path": "registry/mao-selected-works-skill/entry.yaml",
+      "bytes": 454,
+      "sha256": "38a70a885fb456ae"
+    },
+    {
+      "path": "registry/mingchao-those-things-skill/entry.yaml",
+      "bytes": 459,
+      "sha256": "e98d4daf521f914a"
+    },
+    {
+      "path": "registry/no-rules-rules-skill/entry.yaml",
+      "bytes": 446,
+      "sha256": "046fff4ae0c6388b"
+    },
+    {
+      "path": "registry/poor-charlies-almanack-skill/entry.yaml",
+      "bytes": 466,
+      "sha256": "48bfc1dfaffed3b0"
+    },
+    {
+      "path": "registry/qbdx-buffett-letters-skill/entry.yaml",
+      "bytes": 461,
+      "sha256": "962de94fbde6b27a"
+    },
+    {
+      "path": "registry/sunzi-bingfa-skill/entry.yaml",
+      "bytes": 432,
+      "sha256": "a520bf51b2b1b10f"
+    },
+    {
+      "path": "registry/system-prompt-skills/entry.yaml",
+      "bytes": 459,
+      "sha256": "0590da44a135c551"
+    },
+    {
+      "path": "registry/viral-copywriting-skill/entry.yaml",
+      "bytes": 454,
+      "sha256": "85d23858e8831d1b"
+    },
+    {
+      "path": "registry/wo-yu-di-tan-skill/entry.yaml",
+      "bytes": 441,
+      "sha256": "8c661cbaf77d9199"
+    },
+    {
+      "path": "registry/zhouyi-skill/entry.yaml",
+      "bytes": 423,
+      "sha256": "a9bda4123cd48c9f"
+    },
+    {
+      "path": "extractors/case-extractor.md",
+      "bytes": 3457,
+      "sha256": "e02d9cdc96884c22"
+    },
+    {
+      "path": "extractors/counter-example-extractor.md",
+      "bytes": 3112,
+      "sha256": "b926fb35a9c75de4"
+    },
+    {
+      "path": "extractors/framework-extractor.md",
+      "bytes": 3253,
+      "sha256": "41a27a44bcdbd860"
+    },
+    {
+      "path": "extractors/glossary-extractor.md",
+      "bytes": 2845,
+      "sha256": "00a8d0d36d9e206c"
+    },
+    {
+      "path": "extractors/principle-extractor.md",
+      "bytes": 3143,
+      "sha256": "1d4144aa5339c7a6"
+    },
+    {
+      "path": "tests/test_compile_resources.py",
+      "bytes": 6193,
+      "sha256": "a444a5e98e202258"
+    },
+    {
+      "path": "tests/test_output_evals.py",
+      "bytes": 7622,
+      "sha256": "5dfc5c941e1564d5"
+    },
+    {
+      "path": "tests/test_quality_contracts.py",
+      "bytes": 2469,
+      "sha256": "3a6a9ae872e562c9"
+    }
+  ]
+}

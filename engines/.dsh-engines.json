@@ -1,0 +1,21 @@
+{
+  "schema": "dsh-distillation/engines/v1",
+  "vendoredAt": "2026-09-29",
+  "engines": [
+    {
+      "id": "nuwa-skill",
+      "commit": "fe0374687037c4cc51a65c1e0c145afe2981dc69",
+      "repo": "https://github.com/alchaincyf/nuwa-skill"
+    },
+    {
+      "id": "cangjie-skill",
+      "commit": "874eb414e6414dd6d399222a7e3925206dfdb585",
+      "repo": "https://github.com/kangarooking/cangjie-skill"
+    },
+    {
+      "id": "darwin-skill",
+      "commit": "8a8b66258e3c45d6ae4aea39719468c6428fcb0a",
+      "repo": "https://github.com/alchaincyf/darwin-skill"
+    }
+  ]
+}

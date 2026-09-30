@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Distillation">
+  <circle cx="32" cy="12" r="5" fill="#247bbf"/>
+  <path d="M18 22h28l-4 10H22z" fill="none" stroke="#247bbf" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M22 32c0 8 4 12 10 12s10-4 10-12" fill="none" stroke="#247bbf" stroke-width="3" stroke-linecap="round"/>
+  <path d="M32 44v8" stroke="#247bbf" stroke-width="3" stroke-linecap="round"/>
+  <path d="M24 54h16" stroke="#247bbf" stroke-width="3" stroke-linecap="round"/>
+</svg>

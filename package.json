@@ -1,0 +1,64 @@
+{
+  "name": "dsh-distillation",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "把网站、文档、书籍、Git 仓库与 ComfyUI 工作流转成 DSH Skill；内置 nuwa / cangjie / darwin 三个蒸馏引擎与调度 Skill。",
+  "icon": "./icon.svg",
+  "license": "GPL-3.0-or-later",
+  "author": "mmctbqj-collab",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmctbqj-collab/distillation-plugin.git"
+  },
+  "homepage": "https://github.com/mmctbqj-collab/distillation-plugin#readme",
+  "bugs": {
+    "url": "https://github.com/mmctbqj-collab/distillation-plugin/issues"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "skill",
+    "distillation",
+    "comfyui",
+    "cangjie",
+    "nuwa",
+    "darwin"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "meta": {
+    "title": "Distillation / 蒸馏",
+    "description": "Turn websites, documents, books, repositories and ComfyUI workflows into DSH skills — with the nuwa/cangjie/darwin engines bundled in."
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "index.js",
+    "core.mjs",
+    "client.js",
+    "icon.svg",
+    "locale/",
+    "cordis.patch.yml",
+    "engines/",
+    "docs/",
+    "LICENSE",
+    "THIRD_PARTY_LICENSES.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings-plugins"
+      ]
+    }
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "_readme": "本文件是 skill-orchestrator 的唯一事实来源。宿主 Agent 在启动时必须先读它，禁止凭记忆猜测子 Skill 能力。字段语义见 _schema。installed 由 verify_env.py 写入；人工不要手改 installed/last_evolved。",
+  "_schema": {
+    "id": "路由键，必须与安装目录名一致",
+    "name": "SKILL.md frontmatter 里的 name（可能与目录名不同，仅作展示）",
+    "layer": "分类：engine=核心引擎 / support=辅助",
+    "kind": "能力类型：person=造人 / content=造书 / evolution=进化",
+    "repo": "上游仓库 owner/name",
+    "license_note": "上游许可与授权注意事项",
+    "triggers": "确定性路由关键词（中英混合），命中即候选",
+    "priority": "数值越小优先级越高（冲突时用）",
+    "requires": "运行前置：runtime=运行时 / host=宿主能力 / input=用户必须提供 / hard_gate=硬门",
+    "produces": "产物路径模板与关键文件",
+    "artifacts_schema": "产物是否机器可读：json_schema / regex_contract / markdown_only",
+    "callable": "调用面：prompt_only=只能由 LLM 读文档执行 / cli=有命令行入口 / importable=可 import",
+    "entrypoints": "可执行入口清单（可为空）",
+    "gaps": "已知缺陷或与宣传不符之处，执行前必须知情",
+    "installed": "verify_env.py 写入：true/false",
+    "last_evolved": "verify_env.py / darwin 写入：上次进化时间",
+    "last_checked": "verify_env.py 写入：上次上游更新检查时间"
+  },
+  "updated": "2026-09-29",
+  "owner": "local",
+  "layer_notes": {
+    "engine": "核心引擎，直接对应一类用户意图",
+    "support": "为引擎提供支撑的能力"
+  },
+  "skills": [
+    {
+      "id": "nuwa-skill",
+      "name": "huashu-nuwa",
+      "layer": "engine",
+      "kind": "person",
+      "repo": "alchaincyf/nuwa-skill",
+      "stars_at_survey": 33265,
+      "triggers": [
+        "造skill",
+        "蒸馏",
+        "女娲",
+        "造人",
+        "思维方式",
+        "思考方式",
+        "思维顾问",
+        "做个XX视角",
+        "更新XX的skill",
+        "心智模型",
+        "表达DNA",
+        "distill person",
+        "nuwa",
+        "thinking advisor",
+        "how does X think"
+      ],
+      "priority": 10,
+      "requires": {
+        "runtime": [
+          "宿主 LLM"
+        ],
+        "host": [
+          "6 个并行子 agent（Phase 1）",
+          "WebSearch（无本地语料时）"
+        ],
+        "input": "人名 / 主题 / 模糊需求（三选一，本地语料可选）",
+        "hard_gate": [
+          "「蒸馏用户自己」必须用户提供素材",
+          "蒸馏在世非公众人物必须提供素材并提示征得同意"
+        ]
+      },
+      "produces": {
+        "root": ".dsh/skills/[person-name]-perspective/",
+        "topic_variant": ".dsh/skills/[topic]-framework/",
+        "files": [
+          "SKILL.md",
+          "FIDELITY.md",
+          "scripts/",
+          "references/research/01-writings.md",
+          "references/research/02-conversations.md",
+          "references/research/03-expression-dna.md",
+          "references/research/04-external-views.md",
+          "references/research/05-decisions.md",
+          "references/research/06-timeline.md",
+          "references/sources/{books,transcripts,articles}/"
+        ]
+      },
+      "artifacts_schema": "regex_contract",
+      "schema_note": "产物全是 markdown。唯一准 schema 是 FIDELITY.md 固定模板，被 CI 用正则解析：`总分[：:]\\s*(\\d+)\\s*/\\s*100` 且须 ≥70。无 test-prompts.json。",
+      "callable": "prompt_only",
+      "entrypoints": [],
+      "helper_scripts": [
+        "scripts/download_subtitles.sh <YouTube_URL> [outdir]  # 需外部 yt-dlp",
+        "scripts/srt_to_transcript.py <in.srt|in.vtt> [out.txt]  # 纯标准库",
+        "scripts/merge_research.py <skill目录>  # 纯标准库，实测可用",
+        "scripts/quality_check.py <SKILL.md>  # 启发式正则，对官方示例会误判 FAIL"
+      ],
+      "checkpoints": "4 个人工检查点：Phase 1.5 / 2.5 / 4 / 5，非无人值守",
+      "gaps": [
+        "无 CLI、无 pyproject/package.json，唯一入口是 39KB 的 SKILL.md",
+        "无机器可读输出契约，无法程序化校验产物",
+        "4 个人工检查点会打断自动化",
+        "quality_check.py 是启发式：只数 `-`/`*` 列表项，官方 karpathy 示例用数字列表故被误判 FAIL",
+        "仓库内无 harness、无回滚实现；「棘轮/自动回滚」只是对 darwin 能力的转述",
+        "无任何 cangjie 协作痕迹"
+      ],
+      "installed": true,
+      "last_evolved": null,
+      "last_checked": "2026-09-28T09:31:35+08:00"
+    },
+    {
+      "id": "cangjie-skill",
+      "name": "cangjie-skill",
+      "layer": "engine",
+      "kind": "content",
+      "repo": "kangarooking/cangjie-skill",
+      "stars_at_survey": 10662,
+      "triggers": [
+        "仓颉",
+        "提炼",
+        "方法论",
+        "框架",
+        "原则",
+        "把这本书",
+        "做成技能包",
+        "读书笔记",
+        "课程",
+        "视频",
+        "播客",
+        "文档",
+        "PDF",
+        "EPUB",
+        "book to skill",
+        "distill content",
+        "cangjie"
+      ],
+      "priority": 10,
+      "requires": {
+        "runtime": [
+          "Python 3.10+",
+          "PyYAML（必需）",
+          "tiktoken/jsonschema（可选）"
+        ],
+        "host": [
+          "5 个提取器并行子 agent（Phase 1）"
+        ],
+        "input": "已有文本：原生 Markdown / TXT。PDF/EPUB/音视频须先外接转换",
+        "hard_gate": [
+          "没有文本就停下问用户，禁止凭记忆编造"
+        ]
+      },
+      "produces": {
+        "intermediate": "books/<slug>/",
+        "intermediate_files": [
+          "PIPELINE_STATE.md",
+          "BOOK_OVERVIEW.md",
+          "verified.md",
+          "coverage-audit.md",
+          "references.md",
+          "needs-review.md",
+          "GLOSSARY.md",
+          "DIGEST.md",
+          ".cangjie/capabilities/{verified.yaml,cards/,resources/,destinations.json,book/}",
+          ".cangjie/runs/",
+          ".cangjie/snapshots/"
+        ],
+        "single": [
+          "SKILL.md",
+          "references/capabilities/<slug>.md",
+          "capability-index.md",
+          "cheatsheet.md",
+          "overview/glossary.md"
+        ],
+        "pack": [
+          "<router>/...",
+          "<promoted-slug>/SKILL.md",
+          "capability-destinations.json",
+          "BUILD_MANIFEST.json"
+        ]
+      },
+      "artifacts_schema": "json_schema",
+      "schema_note": "schemas/ 有 13 个 JSON Schema（capability-bundle / capability / registry-entry-v2 / source-manifest / change-set / dependency-graph / eval-suite / failure-case / output-decision 等），产物含 JSON/YAML/JSONL，机器可读。",
+      "callable": "cli",
+      "entrypoints": [
+        "scripts/cangjie.py doctor",
+        "scripts/cangjie.py compile --bundle <dir> --out <dir> --output {auto,single,pack} --purpose {learning,reference,workflow,distribution} --yes",
+        "scripts/cangjie.py replan-output --pack <pack> --purpose <p> --dry-run",
+        "scripts/cangjie.py update --pack <pack> --add <x>",
+        "scripts/cangjie.py repair --pack <pack> --case <c>",
+        "scripts/cangjie.py rollback --pack <pack> --target <t> --to <v> --list",
+        "scripts/cangjie.py eval|benchmark  # 透传 run_trigger_evals.py / run_output_evals.py / benchmark.py"
+      ],
+      "importable_api": [
+        "scripts/compile_single.py::build_tree(bundle, variant) -> {相对路径: 内容}",
+        "scripts/compile_pack.py::compile_pack_tree(bundle) -> {相对路径: 内容}"
+      ],
+      "tests": "tests/ 3 个可运行 unittest；CI: python3 -m unittest discover -s tests -v",
+      "gaps": [
+        "无 pyproject.toml / setup.py / requirements.txt，不可 pip install，无 console_scripts",
+        "Phase 0/1.5/2/3 只有 methodology 文档，无代码支持；确定性能力集中在 Phase 4/5",
+        "无 OCR / whisper / ffmpeg / pandoc 代码：音视频与 PDF 需外部流水线",
+        "length/purpose 等决策靠 schema 字段+模板布尔，无自动评测",
+        "安装到 skills 目录是手动步骤，无 install 子命令",
+        "registry/ 是 22 个目录式 entry.yaml，无中心 index 文件"
+      ],
+      "installed": true,
+      "last_evolved": null,
+      "last_checked": "2026-09-28T09:31:35+08:00"
+    },
+    {
+      "id": "darwin-skill",
+      "name": "darwin-skill",
+      "layer": "engine",
+      "kind": "evolution",
+      "repo": "alchaincyf/darwin-skill",
+      "stars_at_survey": 6105,
+      "triggers": [
+        "优化skill",
+        "进化",
+        "改进",
+        "提升质量",
+        "再好一点",
+        "迭代",
+        "评估skill",
+        "rebuild",
+        "evolve skill",
+        "optimize skill",
+        "darwin"
+      ],
+      "priority": 20,
+      "requires": {
+        "runtime": [
+          "宿主 LLM",
+          "git（回滚必需）"
+        ],
+        "host": [
+          "N=3 个独立 judge 子 agent（棘轮多数决）",
+          "能真跑测试的执行环境"
+        ],
+        "input": "目标 skill 目录（含 SKILL.md），且 {skill}/test-prompts.json 必须存在",
+        "hard_gate": [
+          "目标须在 git 仓库内，否则只能退化为 .bak 备份",
+          "无 test-prompts.json 时 dim8「实测表现」不可信，应拒绝评分"
+        ]
+      },
+      "produces": {
+        "in_place": "{skill}/SKILL.md 就地改写",
+        "branch": "auto-optimize/YYYYMMDD-HHMM",
+        "log": ".dsh/skills/darwin-skill/results.tsv（9 列；仓库内不存在，需自建）",
+        "backup": "SKILL.md.bak.YYYYMMDD-HHMM",
+        "card": "templates/result-card.html → PNG（需 Node + playwright）"
+      },
+      "artifacts_schema": "markdown_only",
+      "schema_note": "无机器可读输出。results.tsv 是 9 列 TSV，是最接近契约的东西；test-prompts.json 只有 id/prompt/expected 三个字段被文档承认（实际文件多一个 scenario，契约不自洽）。",
+      "callable": "prompt_only",
+      "entrypoints": [],
+      "only_code": "scripts/screenshot.mjs（3.3KB，唯一可执行文件，与进化主流程无关，可整体丢弃）",
+      "rubric": {
+        "total": 100,
+        "breakdown": "结构 59 + 效果 35 + meta-skill 6",
+        "formula": "总分 = Σ(维度分 × 权重) / 10",
+        "dimensions": 9,
+        "dim8_weight": 23,
+        "diagnosis": "weighted_gap = weight × (10 − score) / 10；每轮只改 1 个维度"
+      },
+      "ratchet": "v2.1 用 paired 同-judge 比较 + 奇数 N 多数决（N=3，close call 升 5）；judge 在同一次 call 内读 git show HEAD:<path> 与工作树，投 better/worse/tie；绝对分降级为 triage-only；回滚 git revert HEAD，禁用 git reset --hard",
+      "gaps": [
+        "可执行代码 <1.5%：235KB 文档（含 166.5KB HTML）对 3.3KB 代码，没有任何 eval/runner 脚本",
+        "无入口函数、无 CLI、无返回码、无结构化输出 → 不能作为自动引擎直接接入",
+        "Phase 间 4 个人工 CHECKPOINT 阻塞",
+        "强依赖 Claude Code 类 spawn 子 agent 的能力，无子 agent 只能 dry_run（>30% 则不可信）",
+        "硬编码路径：扫 .dsh/skills/*/SKILL.md、日志写 .dsh/skills/darwin-skill/",
+        "results.tsv 仓库内不存在；SKILL.md 模板与 test-prompts.json 实际字段不一致",
+        "作者自认 val_bpb 度量概念有误，棘轮依赖 LLM judge 共识而非可复现度量"
+      ],
+      "installed": true,
+      "last_evolved": null,
+      "last_checked": "2026-09-28T09:31:35+08:00"
+    },
+    {
+      "id": "skill-distillation",
+      "name": "skill-distillation",
+      "layer": "support",
+      "kind": "content",
+      "repo": "dsh-distillation（本插件内置）",
+      "license_note": "本插件 GPL-3.0-or-later；内置引擎各自沿用上游 MIT（见 THIRD_PARTY_LICENSES.md）",
+      "triggers": [
+        "解析工作流",
+        "工作流解析",
+        "ComfyUI",
+        "comfyui",
+        "工作流JSON",
+        "workflow.json",
+        "把网页变成md",
+        "网页转md",
+        "网站转md",
+        "整理成册",
+        "distill workflow",
+        "workflow to markdown",
+        "列出生成的技能",
+        "产出清单",
+        "路由计划"
+      ],
+      "priority": 15,
+      "requires": {
+        "runtime": [
+          "Node 22+（node / DSH runtime bin）",
+          "uv + Python 3.10+（仅 distill_cangjie 需要）"
+        ],
+        "host": [
+          "无：CLI 独立运行，不依赖宿主子 agent"
+        ],
+        "input": "http(s) URL，或本地 .md/.txt/.html/.json（含 ComfyUI UI/API 两种工作流 JSON）",
+        "hard_gate": [
+          "输入非原生文本（扫描 PDF / 图片 / 音视频）必须停下告知：本工具无 OCR / whisper / ffmpeg",
+          "JSON 不具备 ComfyUI 形状时必须报错，禁止当工作流解析"
+        ]
+      },
+      "produces": {
+        "comfyui_analysis": "<out>.md —— 固定 8 节：这是什么 / 节点构成 / 模型与LoRA / 采样参数 / 提示词 / 分组 / 执行链路 / 附录全节点",
+        "sources_doc": "<out>.md —— 网站或本地文件多来源合并文档",
+        "skill": "<root>/<name>/SKILL.md（project=<cwd>/.dsh/skills rank100 / user=$DSH_HOME/skills rank400），写盘即被 provider 发现"
+      },
+      "artifacts_schema": "markdown_only",
+      "schema_note": "输出为 Markdown。skill 子命令写出的 SKILL.md 受 DSH frontmatter 契约约束：name 必须匹配 ^[a-z0-9]+(?:-[a-z0-9]+)*$，description 非空，未知/旧版 invocation 键会报错。",
+      "callable": "cli",
+      "entrypoints": [
+        "scripts/cli.mjs route --request \"<需求>\" [--cwd DIR] [--json]",
+        "scripts/cli.mjs comfy <workflow.json> --out <f.md> [--title T] [--print]",
+        "scripts/cli.mjs source <url|file>... --out <f.md>",
+        "scripts/cli.mjs skill --name <kebab> --description <d> [--body-file F] [--target user|project]",
+        "scripts/cli.mjs evolve --skill <id|dir> (--from <doc.md> | --text <md>) [--slug S] [--dry-run]",
+        "scripts/cli.mjs list [--cwd DIR] [--json] [--generated]",
+        "scripts/cli.mjs engines list | platforms | export --target user|project",
+        "宿主插件工具 distill_route / distill_sources / distill_comfyui / distill_skill / distill_evolve / distill_list / distill_cangjie / distill_doctor / distill_engines"
+      ],
+      "importable_api": [
+        "lib/core.mjs 纯函数：htmlToText / isComfyWorkflow / analyzeComfyWorkflow / renderComfyMd / buildSkillMarkdown / writeSkillBundle / inspectRoots"
+      ],
+      "gaps": [
+        "宿主插件的【新增】工具需要重启 DSH 才注册（模块世代缓存）；Skill + CLI 路径立即可用，两者共用同一份 core.mjs",
+        "只吃原生文本，无 OCR / PDF / EPUB / 音视频解析",
+        "ComfyUI widget 名称映射覆盖常见节点，未知节点退回 widget[i]（不丢信息但可读性下降）",
+        "产出登记依赖 <skill>/.distillation.json sidecar；本插件出现之前创建/手写的技能不会被列出",
+        "distill_cangjie 只做确定性编译（Capability Bundle → Skill 包），从原始书籍产出 Bundle 仍由 cangjie 引擎的 Agent 流程完成"
+      ],
+      "installed": true,
+      "last_evolved": null,
+      "last_checked": "2026-09-29"
+    }
+  ],
+  "not_skills": [
+    {
+      "repo": "alchaincyf/huashu-skills",
+      "what": "技能目录+安装器，不调度，可作为本 registry 的对标参考"
+    },
+    {
+      "repo": "alchaincyf/huashu-agent-swarm",
+      "what": "进程级多 agent 蜂群（tmux + git worktree），与 skill 路由无关，过重不可复用"
+    },
+    {
+      "repo": "huashu-skill-updater",
+      "what": "单文件零依赖的上游更新检查器，可复用（改为本 registry 后用）"
+    }
+  ]
+}

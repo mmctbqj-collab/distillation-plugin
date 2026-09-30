@@ -1,0 +1,28 @@
+# 依赖与构建产物
+node_modules/
+.pnpm-store/
+
+# 打包/发布产物（发布用的 .tgz 请放在仓库之外，见 docs/RELEASE.md）
+*.tgz
+*.tar.gz
+dist/
+out/
+
+# 运行时与临时文件
+.work/
+.tmp*/
+*.log
+*.bak
+*.bak.*
+SKILL.md.bak.*
+
+# 编辑器与系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 本地验证输出（verify/ 与 build/ 本身要提交）
+verify/out/
+samples/out/

@@ -1,0 +1,118 @@
+{
+  "engine": "nuwa-skill",
+  "upstreamRepo": "https://github.com/alchaincyf/nuwa-skill",
+  "upstreamSourceDir": "nuwa-skill",
+  "upstreamCommit": "fe0374687037c4cc51a65c1e0c145afe2981dc69",
+  "vendoredAt": "2026-09-29",
+  "note": "Person/topic distillation (prompt-only engine).",
+  "droppedUpstream": "examples/ (2.0 MB of generated showcase skills), promo/ and cover art (26 MB) left upstream.",
+  "adaptation": {
+    "hashMode": "lf-normalized",
+    "table": [
+      "tilde-claude-root: /~[\\\\/]\\.claude[\\\\/]skills/g -> $DSH_HOME/skills",
+      "absolute-home-claude-root: /\\/Users\\/[^/\\s`\"']+\\/\\.claude\\/skills/g -> $DSH_HOME/skills",
+      "relative-claude-root: /\\.claude[\\\\/]skills/g -> .dsh/skills",
+      "python-home-claude-root: /Path\\.home\\(\\)\\s*\\/\\s*\"\\.claude\"\\s*\\/\\s*\"skills\"/g -> Path(os.environ.get(\"DSH_HOME\") or os.path.expanduser(\"~/.dsh\")) / \"skills\"",
+      "claude-agents-dir: /\\.claude[\\\\/]agents/g -> .dsh/agents"
+    ],
+    "rewrittenFiles": [
+      {
+        "path": "SKILL.md",
+        "rewrites": [
+          "relative-claude-root×5"
+        ],
+        "sha256Source": "cc9dd6188bf15166"
+      },
+      {
+        "path": "README.md",
+        "rewrites": [
+          "tilde-claude-root×1"
+        ],
+        "sha256Source": "51533665c9e43ed3"
+      },
+      {
+        "path": "scripts/merge_research.py",
+        "rewrites": [
+          "relative-claude-root×1"
+        ],
+        "sha256Source": "bd371814fb32cf10"
+      },
+      {
+        "path": "scripts/quality_check.py",
+        "rewrites": [
+          "relative-claude-root×1"
+        ],
+        "sha256Source": "1f34ded1f0d161db"
+      }
+    ],
+    "shippedVerbatim": []
+  },
+  "files": [
+    {
+      "path": "SKILL.md",
+      "bytes": 38947,
+      "sha256": "96c903ee503d1ca9",
+      "rewritten": [
+        "relative-claude-root×5"
+      ],
+      "sha256Source": "cc9dd6188bf15166"
+    },
+    {
+      "path": "README.md",
+      "bytes": 17988,
+      "sha256": "bb17138c2557fb72",
+      "rewritten": [
+        "tilde-claude-root×1"
+      ],
+      "sha256Source": "51533665c9e43ed3"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1093,
+      "sha256": "d0952e801d7484cc"
+    },
+    {
+      "path": "scripts/download_subtitles.sh",
+      "bytes": 1861,
+      "sha256": "6b729f2117c552ca"
+    },
+    {
+      "path": "scripts/merge_research.py",
+      "bytes": 5756,
+      "sha256": "2f7b75266ea0b022",
+      "rewritten": [
+        "relative-claude-root×1"
+      ],
+      "sha256Source": "bd371814fb32cf10"
+    },
+    {
+      "path": "scripts/quality_check.py",
+      "bytes": 5826,
+      "sha256": "ae3a7c1451215a83",
+      "rewritten": [
+        "relative-claude-root×1"
+      ],
+      "sha256Source": "1f34ded1f0d161db"
+    },
+    {
+      "path": "scripts/srt_to_transcript.py",
+      "bytes": 3223,
+      "sha256": "fe9de1d39243920f"
+    },
+    {
+      "path": "references/extraction-framework.md",
+      "bytes": 5120,
+      "sha256": "71ba03c80f86141a"
+    },
+    {
+      "path": "references/fidelity-scorecard.md",
+      "bytes": 3483,
+      "sha256": "6f1a488529a087e2"
+    },
+    {
+      "path": "references/skill-template.md",
+      "bytes": 4116,
+      "sha256": "edce635b679f9919"
+    }
+  ]
+}

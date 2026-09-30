@@ -1,0 +1,26 @@
+# Keep the working tree byte-stable across platforms.
+#
+# `build/vendor-engines.mjs --check` verifies every vendored engine file against
+# the SHA-256 recorded in its UPSTREAM.json. With core.autocrlf the checkout
+# would turn LF into CRLF on Windows, every hash would mismatch, and a fresh
+# clone would look "drifted" although nothing changed. Forcing LF in the working
+# tree keeps the recorded hashes valid everywhere.
+* text=auto eol=lf
+
+# Binary assets stay untouched.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.zip binary
+*.gz binary
+*.tgz binary
+
+# Vendored engine payloads are hash-checked byte for byte: never rewrite them.
+engines/** -text
